@@ -1,0 +1,134 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true" xmlns:f="sap.ui.layout.form"
+	controllerName="wp.inbound.controller.Putaway" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Inbound Process" showHeader="false">
+			<Bar>
+			<contentLeft>
+				<Title text="Putaway"></Title>
+			</contentLeft>
+			<contentRight>
+				<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+			</contentRight>
+		</Bar>
+		<!--<customHeader>-->
+		<!--	<Bar>-->
+		<!--		<contentLeft>-->
+					<!--<Text text="Delivery Number"></Text>-->
+					<!--<Text id="idDeliveryNumber" text=""></Text>-->
+		<!--		</contentLeft>-->
+		<!--		<contentMiddle>-->
+		<!--			<Title text="Putaway"></Title>-->
+		<!--			<Text text=""/>-->
+		<!--		</contentMiddle>-->
+		<!--		<contentRight>-->
+					<!--<Button text="user" icon="sap-icon://employee"/>-->
+		<!--		</contentRight>-->
+		<!--	</Bar>-->
+		<!--</customHeader>-->
+		<!--<Bar>-->
+		<!--<contentLeft><Button icon="sap-icon://nav-back" tooltip="Back" press="onBackPress"/></contentLeft>-->
+		<!--<contentRight><Button icon="sap-icon://navigation-right-arrow" tooltip="Next" enabled="false"/></contentRight>-->
+		<!--</Bar>-->
+		<content class="sapUiContentPadding">
+			<FlexBox justifyContent="Center" alignItems="Center">
+				<VBox >
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Source Bin" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--<Input editable="false" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--<Label text="" width="100%"></Label>-->
+					<!--	<Input id="PutawayScouceBin" submit="scanSourceBin" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<HBox class="sapUiContentPadding">
+						<Label text="Dest. Bin" vAlign="Middle">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<!--<Input editable="false" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+						<!--<Label text="" width="100%"></Label>-->
+						<VBox>
+							<Input id="PutawayDestBin" valueState="{globalModel>/PutawayDest}" value="{PutawayModel>/DestinationBinVerif}" submit="scanDestBin"
+								width="100%"></Input>
+							<Input id="PutawayDestBin1" value="{PutawayModel>/DestinationBin}" width="100%" editable="false"></Input>
+						</VBox>
+					</HBox>
+					<HBox class="sapUiContentPadding">
+						<Label text="Mat" vAlign="Middle">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<VBox>
+							<Input id="PutawayMaterial" valueState="{globalModel>/PutawayMat}" value="{PutawayModel>/ProductVerif}" submit="scanMaterial" width="100%"></Input>
+							<Input value="{PutawayModel>/Product}" width="100%" editable="false"></Input>
+						</VBox>
+					</HBox>
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--</HBox>-->
+					<!--<HBox></HBox>-->
+					<HBox class="sapUiTinyMargin">
+						<Label text="Qty" vAlign="Middle" class="sapUiTinyMarginEnd"></Label>
+						<Title text="{PutawayModel>/Uom}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Title>
+						<!--<Input width="50%" editable="false" class="sapUiSmallMarginBegin"></Input>-->
+						<!--<Label text="" width="100%"></Label>-->
+						<HBox width="55%">
+							<Input id="PutawayQuantity"  textAlign="Right"></Input>
+							<Input
+								value="{path:'PutawayModel>/QuantityVerif',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}} / {path:'PutawayModel>/Quantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"
+								textAlign="Right" editable="false"></Input>
+							<!--<Input id="idUOMPutaway" editable="false" value="{PutawayModel>/Uom}"></Input>-->
+						</HBox>
+					</HBox>
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="UOM" vAlign="Middle">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<VBox>-->
+					<!--		<Input id="idUOMPutaway" editable="false" value="{PutawayModel>/Uom}" width="100%"></Input>-->
+					<!--<Input value="" width="100%" editable="false"></Input>-->
+					<!--	</VBox>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Destination HU" vAlign="Middle">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<VBox>-->
+					<!--		<Input id="PutawayDestHU" width="100%" ></Input>-->
+					<!--		<Input value="" width="100%" editable="false"></Input>-->
+					<!--	</VBox>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--</HBox>-->
+					<!--<HBox></HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--</HBox>-->
+				</VBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://decline" press="onCanclePress"/>
+				</contentLeft>
+				<contentRight>
+					<Button press="onManualBin" text="Mnl Bin"/>
+					<Button press="onNextBin" icon="sap-icon://navigation-right-arrow" text="Nxt Bin"/>
+					<Button type="Emphasized" press="onSavePutaway" tooltip="Save" icon="sap-icon://save"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

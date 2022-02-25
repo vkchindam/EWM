@@ -1,0 +1,41 @@
+<mvc:View controllerName="wp.inbound.controller.Delivery" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Page title="{i18n>title}" class="sapUiContentPadding" showHeader="false">
+			<Bar>
+					<contentLeft>
+						<Title id="idDeliveryTitleText" text="Pallet Build"></Title>
+					</contentLeft>
+					<contentRight>
+						<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+					</contentRight>
+				</Bar>
+	<!--	<customHeader>
+			<Bar>
+			
+				<contentMiddle>
+					<Title id="idDeliveryTitleText" text="Pallet Build"></Title>
+				</contentMiddle>
+			
+			</Bar>
+		</customHeader>-->
+		<!--<Bar>-->
+		<!--<contentLeft><Button icon="sap-icon://nav-back" tooltip="Back" press="onBackPress"/></contentLeft>-->
+		<!--<contentRight><Button icon="sap-icon://navigation-right-arrow" tooltip="Next" enabled="false"/></contentRight>-->
+		<!--</Bar>-->
+		<content class="sapUiContentPadding">
+			<FlexBox justifyContent="Center" alignItems="Center">
+				<VBox class="sapUiContentPadding">
+					<Label id="idDeliveryText"></Label>
+					<Input id="idscanInboundDeliveryPO"  valueState="{globalModel>/PalletIBD}" submit="validateInbound" width="100%"></Input>
+				</VBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://decline" press="onCanclePress"/>
+				</contentLeft>
+				<contentRight></contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

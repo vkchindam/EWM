@@ -1,0 +1,113 @@
+{
+    "inputs": [
+      {
+        "id": "UI5Version",
+        "type": "command",
+        "command": "sap.ux.appGenerator.ui5Version"
+      }
+    ],
+    "configurations": [
+      {
+        "name": "warehouse",
+        "cwd": "${workspaceFolder}",
+        "runtimeArgs": [
+          "fiori",
+          "run"
+        ],
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npx",
+        "args": [
+          "--open",
+          "test/flpSandbox.html?sap-client=400#wpwarehousewarehouse-display"
+        ],
+        "windows": {
+          "runtimeExecutable": "npx.cmd"
+        },
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "env": {
+          "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/warehouse\"}",
+          "FIORI_TOOLS_UI5_VERSION": "",
+          "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
+        }
+      },
+      {
+        "name": "Start outboundlc",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npx",
+        "cwd": "${workspaceFolder}/outboundlc",
+        "windows": {
+          "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+          "fiori",
+          "run"
+        ],
+        "args": [
+          "--open",
+          "'test/flpSandbox.html?sap-client=200#wpoutboundlc-display'"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 9229,
+        "env": {
+          "DEBUG": "--inspect",
+          "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/warehouse/outboundlc\"}"
+        }
+      },
+      {
+        "name": "Start outboundlc Mock",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/outboundlc",
+        "runtimeExecutable": "npx",
+        "windows": {
+          "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+          "fiori",
+          "run"
+        ],
+        "args": [
+          "--open",
+          "'test/flpSandboxMockServer.html?sap-client=200#wpoutboundlc-display'"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 9229,
+        "env": {
+          "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/warehouse/outboundlc\"}"
+        }
+      },
+      {
+        "name": "Start outboundlc Local",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/outboundlc",
+        "runtimeExecutable": "npx",
+        "windows": {
+          "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+          "fiori",
+          "run"
+        ],
+        "args": [
+          "--config",
+          "./ui5-local.yaml",
+          "--open",
+          "'test/flpSandbox.html?sap-client=200#wpoutboundlc-display'"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 9229,
+        "env": {
+          "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/warehouse/outboundlc\"}"
+        }
+      }
+    ],
+    "compounds": [],
+    "version": "0.2.0"
+  }

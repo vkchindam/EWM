@@ -1,0 +1,214 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "wp.inbound",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZGW_RFUI_WHPROC_SRV": {
+				"uri": "/sap/opu/odata/sap/ZGW_RFUI_WHPROC_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZGW_RFUI_WHPROC_SRV/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "wp.inbound.view.Inbound",
+			"type": "XML",
+			"async": true,
+			"id": "Inbound"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "wp.inbound.i18n.i18n"
+				}
+			},
+			"warehouse": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZGW_RFUI_WHPROC_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "wp.inbound.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteLanding",
+					"pattern": "",
+					"target": [
+						"TargetLanding"
+					]
+				},
+				{
+					"name": "Delivery",
+					"pattern": "Delivery({process})/:delId:",
+					"target": [
+						"Delivery"
+					]
+				},
+				{
+					"name": "PutawayProcess",
+					"pattern": "PutawayProcess({process})",
+					"target": [
+						"Putaway"
+					]
+				},
+				{
+					"name": "PalletBuildProcess",
+					"pattern": "PalletBuildProcess({delId})",
+					"target": [
+						"PalletBuild"
+					]
+				},
+				{
+					"name": "WareHouse",
+					"pattern": "WareHouse({process})/:OBdelId:",
+					"target": [
+						"WareHouse"
+					]
+				},
+				{
+					"name": "STOListProcess",
+					"pattern": "STOListProcess",
+					"target": [
+						"STOList"
+					]
+				},
+				{
+					"name": "GoodsReceiptProcess",
+					"pattern": "GoodsReceiptProcess",
+					"target": [
+						"GoodsReceipt"
+					]
+				},
+				{
+					"name": "GoodsReceiptSTOProcess",
+					"pattern": "GoodsReceiptSTOProcess",
+					"target": [
+						"GoodsReceiptSTO"
+					]
+				},
+				{
+					"name": "crossDeckProcess",
+					"pattern": "crossDeckProcess",
+					"target": [
+						"CrossDeck"
+					]
+				}
+			],
+			"targets": {
+				"TargetLanding": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Inbound"
+				},
+				"Delivery": {
+					"viewType": "XML",
+					"viewName": "Delivery",
+					"transition": "slide",
+					"clearControlAggregation": false
+				},
+				"GoodsReceipt": {
+					"viewType": "XML",
+					"viewName": "GoodsReceipt"
+				},
+				"GoodsReceiptSTO": {
+					"viewType": "XML",
+					"viewName": "GoodsReceiptSTO"
+				},
+				"PutawayList": {
+					"viewType": "XML",
+					"viewName": "PutawayList"
+				},
+				"Putaway": {
+					"viewType": "XML",
+					"viewName": "Putaway"
+				},
+				"PalletBuild": {
+					"viewType": "XML",
+					"viewName": "PalletBuild"
+				},
+				"WareHouse": {
+					"viewType": "XML",
+					"viewName": "WareHouse"
+				},
+				"STOList": {
+					"viewType": "XML",
+					"viewName": "STOList"
+				},
+				"CrossDeck": {
+					"viewType": "XML",
+					"viewName": "CrossDeck"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zrfui_inbound",
+		"_version": "1.1.0"
+	}
+}

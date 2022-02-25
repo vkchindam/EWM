@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog title="Exception List">
+		<content>
+			<VBox class="enableScroll">
+				<Table fixedLayout="false" alternateRowColors="true" items="{ExceptionModel>/ExceptionCollection}">
+					<columns>
+						<Column minScreenWidth="Tablet">
+							<Label text="Material"/>
+						</Column>
+						<Column minScreenWidth="Tablet">
+							<Label text="IDN Qty"/>
+						</Column>
+						<Column minScreenWidth="Tablet">
+							<Label text="Scan Qty"/>
+						</Column>
+					</columns>
+					<ColumnListItem>
+						<cells>
+							<Text text="{ExceptionModel>Product}" wrapping="false"/>
+							<Text
+								text="{path:'ExceptionModel>TargetQuantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"/>
+							<Text
+								text="{path:'ExceptionModel>QuantityVerif',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"/>
+						</cells>
+					</ColumnListItem>
+				</Table>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="Cancel" type="Emphasized" press="onExceptionCancel"/>
+		</beginButton>
+		<endButton>
+			<Button type="Emphasized" press="onExceptionCancel" text="Ok"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

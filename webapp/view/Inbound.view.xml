@@ -1,0 +1,42 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true"
+	controllerName="wp.inbound.controller.Inbound" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Shell id="shell" headerRightText="User" logo="img/wp2" title="Landing Page">
+		<App id="app">
+			<Page title="Inbound" showHeader="false">
+				<Bar>
+					<contentLeft>
+						<Title text="Inbound Process"></Title>
+					</contentLeft>
+					<contentRight>
+						<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+					</contentRight>
+				</Bar>
+				<!--	<customHeader>
+					<Bar>
+						<contentLeft>
+			
+						</contentLeft>
+						<contentMiddle>
+							<Title text="Inbound Process"></Title>
+						</contentMiddle>
+						<contentRight>
+						
+						</contentRight>
+					</Bar>
+				</customHeader>-->
+				<content class="sapUiContentPadding">
+					<FlexBox justifyContent="Center">
+						<VBox class="sapUiContentPadding">
+							<!--<Button text="Crossdock" class="myBtn" press="onCrossDeck" visible="{globalModel>/BtnVisible}"/>-->
+							<Button text="Goods Receipt PO" class="myBtn" press="onGoodsRecript"/>
+							<Button text="Goods Receipt STO" class="myBtn" press="onGoodsRecriptSTO"/>
+							<Button text="Pallet Build" class="myBtn" press="onPalletBulid"/>
+							<!--<Button text="Pallet Build" class="myBtn" press="onPalletBulid"/>-->
+							<Button text="Putaway" class="myBtn" press="onPutaway"/>
+						</VBox>
+					</FlexBox>
+				</content>
+			</Page>
+		</App>
+	</Shell>
+</mvc:View>

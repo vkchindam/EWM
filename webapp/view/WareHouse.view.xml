@@ -1,0 +1,130 @@
+<mvc:View controllerName="wp.inbound.controller.WareHouse" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Page title="{i18n>title}" class="sapUiContentPadding" showHeader="false">
+			<Bar>
+			<contentLeft>
+				<Title text="Putaway"></Title>
+			</contentLeft>
+			<contentRight>
+				<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+			</contentRight>
+		</Bar>
+		<!--<customHeader>-->
+		<!--	<Bar>-->
+				<!--<contentLeft>-->
+				<!--<Image src="img/wp2.png" width="50%" height="30%"></Image>-->
+				<!--</contentLeft>-->
+		<!--		<contentMiddle>-->
+		<!--			<Title text="Putaway"></Title>-->
+		<!--		</contentMiddle>-->
+				<!--<contentRight>-->
+				<!--<Button text="user" icon="sap-icon://employee"/>-->
+				<!--</contentRight>-->
+		<!--	</Bar>-->
+		<!--</customHeader>-->
+		<!--<Bar>-->
+		<!--<contentLeft><Button icon="sap-icon://nav-back" tooltip="Back" press="onBackPress"/></contentLeft>-->
+		<!--<contentRight><Button icon="sap-icon://navigation-right-arrow" tooltip="Next" enabled="false"/></contentRight>-->
+		<!--</Bar>-->
+		<content class="sapUiContentPadding">
+			<Bar>
+				<contentLeft>
+					<Switch id="idSwitchState" state="false" customTextOn="PO" customTextOff="STO" change="onStateChange">
+						<layoutData>
+							<FlexItemData growFactor="1"/>
+						</layoutData>
+					</Switch>
+				</contentLeft>
+				<contentRight>
+					<Button tooltip="Returns" text="RETN" type="Emphasized" press="onReturnPress"/>
+				</contentRight>
+			</Bar>
+			<FlexBox width="100%" justifyContent="Center" alignItems="Center">
+				<VBox>
+					<!--<HBox class="sapUiTinyMargin" visible="{globalModel>/WarehouseNumVisi}">-->
+					<!--	<Label text="WH Task" visible="{globalModel>/WarehouseNumVisi}">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--<Input id="idscanWareHouse" valueState="{globalModel>/WarehouseNum}" visible="{globalModel>/WarehouseNumVisi}" submit="validateWareHouse"-->
+					<!--	width="100%"></Input>-->
+					<!--</HBox>-->
+					<HBox class="sapUiTinyMargin" visible="{globalModel>/IBDNumVisi}">
+						<Label text="I/B Delivery" visible="{globalModel>/IBDNumVisi}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<Input id="idscanIBD" valueState="{globalModel>/IBDNum}" visible="{globalModel>/IBDNumVisi}" submit="validateIBD" width="100%"></Input>
+					</HBox>
+					<HBox class="sapUiTinyMargin" visible="{globalModel>/OBDelVisi}">
+						<Label text="O/B Delivery" visible="{globalModel>/OBDelVisi}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<Input id="idscanOBDel" valueState="{globalModel>/OBDel}" visible="{globalModel>/OBDelVisi}" submit="validateOBDel" width="100%"></Input>
+					</HBox>
+				</VBox>
+			</FlexBox>
+			<!--<FlexBox justifyContent="Center" alignItems="Center">-->
+			<!--	<VBox >-->
+			<!--		<List id="idPutawayList" items="{PutawayListModel>/PutawaySet}" showNoData="false" visible="{=${PutawayListModel>/PutawaySet}.length > 0}"-->
+			<!--			growing="true" growingThreshold="10">-->
+			<!--			<items>-->
+			<!--				<CustomListItem type="Active" press="handleMaterialPress">-->
+			<!--					<HBox class="sapUiContentPadding">-->
+			<!--						<Input editable="false" width="15%"-->
+			<!--							value="{path:'PutawayListModel>Quantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"></Input>-->
+			<!--						<Input editable="false" value="{PutawayListModel>Product}" width="75%"/>-->
+			<!--					</HBox>-->
+			<!--				</CustomListItem>-->
+			<!--			</items>-->
+			<!--		</List>-->
+			<!--	</VBox>-->
+			<!--</FlexBox>-->
+			<FlexBox width="100%" justifyContent="Center" alignItems="Center">
+				<VBox>
+					<Table id="idPutawayList"
+						items="{path:'PutawayListModel>/PutawaySet', sorter:[{ path: 'DestinationBin' , descending: false }, { path: 'Product' , descending: false }]}">
+						<!--<headerToolbar>-->
+						<!--	<Toolbar>-->
+						<!--		<Title text="Warehouse Task List" level="H2"/>-->
+						<!--	</Toolbar>-->
+						<!--</headerToolbar>-->
+						<columns>
+							<Column minScreenWidth="Phone" width="40%">
+								<Text text="Dest Bin"></Text>
+							</Column>
+							<Column minScreenWidth="Phone" width="auto">
+								<Text text="Mat"></Text>
+							</Column>
+							<Column minScreenWidth="Phone" width="15%">
+								<Text text="Qty"></Text>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="handleMaterialPress">
+								<cells>
+									<Text text="{PutawayListModel>DestinationBin}"></Text>
+									<Text text="{PutawayListModel>Product}"></Text>
+									<Text text="{path:'PutawayListModel>Quantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</VBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://decline" press="onCanclePress"/>
+				</contentLeft>
+				<contentRight>
+					<Button type="Emphasized" press="onWareHouseConfirm" tooltip="Save" icon="sap-icon://save"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

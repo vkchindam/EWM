@@ -1,0 +1,185 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true"
+	controllerName="wp.inbound.controller.PalletBuild" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Inbound Proccess" class="sapUiContentPadding" showHeader="false">
+			<Bar>
+					<contentLeft>
+						<Text text="IDN"></Text>
+					<Text id="idDeliveryNumber" text=""></Text>
+					</contentLeft>
+						<contentMiddle>
+					<Title text="WT/Pack"></Title>
+				
+				</contentMiddle>
+					<contentRight>
+						<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+					</contentRight>
+				</Bar>
+		<!--<customHeader>-->
+		<!--	<Bar>-->
+		<!--		<contentLeft>-->
+		<!--			<Text text="IDN"></Text>-->
+		<!--			<Text id="idDeliveryNumber" text=""></Text>-->
+					<!--<Image src="img/wp2.png" width="50%" height="30%"></Image>-->
+		<!--		</contentLeft>-->
+		<!--		<contentMiddle>-->
+		<!--			<Title text="WT/Pack"></Title>-->
+					<!--<Text text="123456"/>-->
+		<!--		</contentMiddle>-->
+		<!--		<contentRight>-->
+					<!--<Button text="user" icon="sap-icon://employee"/>-->
+		<!--		</contentRight>-->
+		<!--	</Bar>-->
+		<!--</customHeader>-->
+		<!--<Bar>-->
+		<!--<contentLeft><Button icon="sap-icon://nav-back" tooltip="Back" press="onBackPress"/></contentLeft>-->
+		<!--<contentRight><Button icon="sap-icon://navigation-right-arrow" tooltip="Next" enabled="false"/></contentRight>-->
+		<!--</Bar>-->
+		<content class="sapUiContentPadding">
+			<FlexBox justifyContent="Center" alignItems="Center">
+				<VBox>
+					<HBox class="sapUiContentPadding">
+						<Label text="Mat" vAlign="Middle">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<VBox>
+							<Input id="idProduct"  valueState="{globalModel>/PalletMat}" submit="scanMaterial" width="100%"></Input>
+							<Input id="idProductVer" value="{PalletModel>/ProductVar}" width="100%" editable="false"></Input>
+						</VBox>
+					</HBox>
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--<HBox>-->
+					<!--	<Label text="Batch" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="{Property>/EditBatch}" id="idBatch" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Carrier" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="false" id="idCarrier" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="BBD" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="false" id="idBBD" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Prod Date" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="{Property>/EditPdate}" id="idProddate" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<HBox class="sapUiTinyMargin">
+						<Label text="Qty" vAlign="Middle" class="sapUiTinyMarginEnd"></Label>
+						<Title text="{PalletModel>/Uom}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Title>
+						<HBox width="55%">
+							<Input id="idQuantity" textAlign="Right"></Input>
+							<Input id="idQuantityVer" textAlign="Right"
+								value="{path:'PalletModel>/TargetQuantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}} / {path:'PalletModel>/OpenQuantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"
+								editable="false"></Input>
+						</HBox>
+					</HBox>
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Qty" vAlign="Middle"></Label>-->
+					<!--	<Title text="{PalletModel>/Uom}" vAlign="Middle">-->
+					<!--		<layoutData>-->
+					<!--			<Title text="EA" vAlign="Middle">-->
+					<!--				<FlexItemData growFactor="1"/>-->
+					<!--			</layoutData>-->
+					<!--		</Title>-->
+					<!--		<HBox width="43%">-->
+					<!--			<Input id="idQuantity" textAlign="Right"></Input>-->
+					<!--			<Input id="idQuantityVer" textAlign="Right" value="{PalletModel>/TargetQuantity} / {PalletModel>/OpenQuantity}" editable="false"></Input>-->
+					<!--<Input id="idUOM" editable="false"  value="{PalletModel>/Uom}"></Input>-->
+					<!--		</HBox>-->
+					<!--	</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Open/Scan Qty" vAlign="Middle">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<HBox>-->
+					<!--		<Input id="idQuantityScan" value="{PalletModel>/TargetQuantity}" width="50%" editable="false"></Input>-->
+					<!--		<Input id="idQuantityVer" value="{PalletModel>/OpenQuantity}" width="50%" editable="false"></Input>-->
+					<!--	</HBox>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="Prod Var" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="false" id="idProdvar" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="No of HU" visible="{Property>/NoHUVisible}" width="100%">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<Input editable="true" id="idNOOFHU" visible="{Property>/NoHUVisible}" width="50%" class="sapUiSmallMarginBegin"></Input>-->
+					<!--</HBox>-->
+					<!--<HBox class="sapUiContentPadding">-->
+					<!--	<Label text="UOM" vAlign="Middle">-->
+					<!--		<layoutData>-->
+					<!--			<FlexItemData growFactor="1"/>-->
+					<!--		</layoutData>-->
+					<!--	</Label>-->
+					<!--	<VBox>-->
+					<!--<Input id="idUOM" editable="false" value="{PalletModel>/Uom}" width="100%"></Input>-->
+					<!--<Input value="" width="100%" editable="false"></Input>-->
+					<!--	</VBox>-->
+					<!--</HBox>-->
+					<HBox class="sapUiContentPadding">
+						<Label text="HU" vAlign="Middle">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<VBox>
+							<Input id="idHU" editable="false" value="{PalletModel>/DestinationHu}" width="100%"></Input>
+							<!--<Input value="" width="100%" editable="false"></Input>-->
+						</VBox>
+					</HBox>
+				</VBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://decline" press="onCanclePress"/>
+					<!--<Button type="Emphasized" icon="sap-icon://save" press="onSaveSTO" visible="{Property>/ActionSTO}" />-->
+				</contentLeft>
+				<contentMiddle>
+					<!--<Button type="Emphasized" icon="sap-icon://create" press="onSaveHUCreate" visible="{Property>/ActionHU}" text="Create HU"/>-->
+				</contentMiddle>
+				<contentRight>
+					<!--<Button press="onMaterialList" tooltip="Material List" icon="sap-icon://list"/>-->
+					<!--<Button type="Emphasized" press="onPriorPack" text="Prior Pack"/>-->
+					<!--<Button type="Emphasized" press="onPackNew" text="WT/Pallet"/>-->
+					<Button type="Emphasized" press="onPalletBulid" text="WT/Pallet"/>
+					<Button type="Emphasized" text="List" press="onScanList"/>
+					<Button type="Emphasized" icon="sap-icon://save" press="onSaveQty"/>
+					<Button type="Emphasized" press="onContinuePutaway" text="PtWy" icon="sap-icon://accept"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

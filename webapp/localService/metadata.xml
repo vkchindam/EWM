@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_RFUI_IBPROC_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Putaway" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="WarehouseTask"/>
+                    <PropertyRef Name="DestinationBin"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WarehouseTask" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Warehouse Task" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NextBin" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Next Available Bin Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DestinationBin" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Destination Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DestinationBinVerif" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Destination Bin Verification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Printer" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Printer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Product" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductVerif" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Product Verification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="14" sap:unicode="false" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QuantityVerif" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="14" sap:unicode="false" sap:label="Quantity Verification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ObDelivery" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Outbound Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ibd" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Inbound Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ReturnOrders" Type="Edm.Boolean" sap:unicode="false" sap:label="Return Orders" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Delivery" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="Ibd"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ibd" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Inbound Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Product" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Product" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Item" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TargetQuantity" Type="Edm.Decimal" Precision="31" Scale="14" sap:unicode="false" sap:label="Source Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Printer" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Printer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QuantityVerif" Type="Edm.Decimal" Precision="31" Scale="14" sap:unicode="false" sap:label="Scan Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AsnNumber" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="ASN Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Base Unit of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="AllowScan" Type="Edm.Boolean" sap:unicode="false" sap:label="Allow Scan" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GoodsReceipt" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="InboundDelivery"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InboundDelivery" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Inbound Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sto" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="STO Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AsnNumber" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Asn Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Printer" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Printer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WarehouseType" Type="Edm.String" sap:unicode="false" sap:label="Warehouse Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WarehouseTaskList" Type="Edm.String" sap:unicode="false" sap:label="Warehouse Tasks" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PackHU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="Ibd"/>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ibd" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Inbound Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DestinationBin" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Destination Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Product" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductVar" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Product" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TargetQuantity" Type="Edm.Decimal" Precision="31" Scale="14" sap:unicode="false" sap:label="Source Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OpenQuantity" Type="Edm.Decimal" Precision="31" Scale="14" sap:unicode="false" sap:label="Source Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Uom" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DestinationHu" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Destination HU" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PackNew" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Pack New" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WarehouseTask" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Warehouse Task" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="XdockScan" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="Container"/>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Container" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Container Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delivery" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Delivery Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Printer" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Printer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="XdockSubmit" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="Container"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Container" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Container Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delivery" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Delivery Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="IbdPackHU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Warehouse No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ibd" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Reference Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hu" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Dest. HU" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Printer" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Printer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WarehouseType" Type="Edm.String" sap:unicode="false" sap:label="Warehouse Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PackHUSet" Relationship="ZGW_RFUI_IBPROC_SRV.IbdPackHUNav" FromRole="FromRole_IbdPackHUNav" ToRole="ToRole_IbdPackHUNav"/>
+            </EntityType>
+            <Association Name="IbdPackHUNav" sap:content-version="1">
+                <End Type="ZGW_RFUI_IBPROC_SRV.IbdPackHU" Multiplicity="1" Role="FromRole_IbdPackHUNav"/>
+                <End Type="ZGW_RFUI_IBPROC_SRV.PackHU" Multiplicity="*" Role="ToRole_IbdPackHUNav"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_IbdPackHUNav">
+                        <PropertyRef Name="Warehouse"/>
+                    </Principal>
+                    <Dependent Role="ToRole_IbdPackHUNav">
+                        <PropertyRef Name="Warehouse"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGW_RFUI_IBPROC_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PutawaySet" EntityType="ZGW_RFUI_IBPROC_SRV.Putaway" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="DeliverySet" EntityType="ZGW_RFUI_IBPROC_SRV.Delivery" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GoodsReceiptSet" EntityType="ZGW_RFUI_IBPROC_SRV.GoodsReceipt" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PackHuSet" EntityType="ZGW_RFUI_IBPROC_SRV.PackHU" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="XdockScanSet" EntityType="ZGW_RFUI_IBPROC_SRV.XdockScan" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="XdockSubmitCollection" EntityType="ZGW_RFUI_IBPROC_SRV.XdockSubmit" sap:content-version="1"/>
+                <EntitySet Name="IbdPackSet" EntityType="ZGW_RFUI_IBPROC_SRV.IbdPackHU" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="IbdPackHUNavSet" Association="ZGW_RFUI_IBPROC_SRV.IbdPackHUNav" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="IbdPackSet" Role="FromRole_IbdPackHUNav"/>
+                    <End EntitySet="PackHuSet" Role="ToRole_IbdPackHUNav"/>
+                </AssociationSet>
+                <FunctionImport Name="getContainer" ReturnType="ZGW_RFUI_IBPROC_SRV.XdockSubmit" EntitySet="XdockSubmitCollection" m:HttpMethod="GET">
+                    <Parameter Name="Container" Type="Edm.String" Mode="In" MaxLength="20"/>
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="4"/>
+                    <Parameter Name="Delivery" Type="Edm.String" Mode="In" MaxLength="35"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sapfesd01:8000/sap/opu/odata/sap/ZGW_RFUI_IBPROC_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapfesd01:8000/sap/opu/odata/sap/ZGW_RFUI_IBPROC_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

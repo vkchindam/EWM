@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog title="Material List">
+		<content>
+			<VBox class="enableScroll">
+				<Table fixedLayout="false" alternateRowColors="true" items="{MatListModel>/PackHuSet}">
+					<columns>
+						<Column >
+							<Label text="Material"/>
+						</Column>
+						<Column >
+							<Label text="Open Qty"/>
+						</Column>
+						<Column >
+							<Label text="Scan Qty"/>
+						</Column>
+					</columns>
+					<ColumnListItem>
+						<cells>
+							<Text text="{MatListModel>Product}" wrapping="false"/>
+							<Text
+								text="{path:'MatListModel>OpenQuantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"/>
+							<Text
+								text="{path:'MatListModel>TargetQuantity',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"/>
+						</cells>
+					</ColumnListItem>
+				</Table>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="Cancel" type="Emphasized" press="onHistoryCancel"/>
+		</beginButton>
+		<endButton>
+			<Button type="Emphasized" press="onSaveSTOPOPUP" text="WT/Pallet"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

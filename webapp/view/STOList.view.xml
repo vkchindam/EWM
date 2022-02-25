@@ -1,0 +1,72 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true"
+	controllerName="wp.inbound.controller.STOList" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title" showHeader="false">
+			<Bar>
+			<contentLeft>
+				<Title text="Goods Receipt STO"></Title>
+			</contentLeft>
+			<contentRight>
+				<Button icon="sap-icon://menu2" press="goToMainMenu"></Button>
+			</contentRight>
+		</Bar>
+		<!--<customHeader>-->
+		<!--	<Bar>-->
+		<!--		<contentLeft>-->
+					<!--<Image src="{imageModel>/path}/img/wp2.png" width="50%" height="30%"></Image>-->
+		<!--		</contentLeft>-->
+		<!--		<contentMiddle>-->
+		<!--			<Title text="Goods Receipt STO"></Title>-->
+		<!--		</contentMiddle>-->
+		<!--		<contentRight>-->
+					<!--<Button text="User" icon="sap-icon://employee"/>-->
+		<!--		</contentRight>-->
+		<!--	</Bar>-->
+		<!--</customHeader>-->
+		<!--<Bar>-->
+		<!--<contentLeft><Button icon="sap-icon://nav-back" tooltip="Back" press="onBackPress"/></contentLeft>-->
+		<!--<contentRight><Button icon="sap-icon://navigation-right-arrow" tooltip="Next" enabled="false"/></contentRight>-->
+		<!--</Bar>-->
+		<content class="sapUiContentPadding">
+			<FlexBox justifyContent="Center" alignItems="Center">
+				<VBox >
+					<HBox class="sapUiContentPadding">
+						<Label text="Mat" vAlign="Middle">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+						<VBox>
+							<Input id="idSTOMaterial" valueState="{globalModel>/STOMat}" submit="scanMaterial" width="100%"></Input>
+							<Input value="{STOModel>/Product}" width="100%" editable="false"></Input>
+						</VBox>
+					</HBox>
+					<HBox class="sapUiTinyMargin">
+						<Label text="Qty" vAlign="Middle" class="sapUiTinyMarginEnd"></Label>
+						<Title text="{STOModel>/Uom}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Title>
+						<HBox width="55%">
+							<Input id="idSTOQuantity" editable="{STOModel>/AllowScan}" textAlign="Right"></Input>
+							<Input value="{path:'STOModel>/QuantityVerif',type: 'sap.ui.model.type.Float',formatOptions: { decimals: 0}, constraints : { minimun:0.00}}"
+								textAlign="Right" editable="false"></Input>
+						</HBox>
+					</HBox>
+				</VBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://decline" press="onCanclePress"/>
+				</contentLeft>
+				<contentRight>
+					<Button type="Emphasized" text="Scan List" press="onScanList"/>
+					<Button type="Emphasized" press="onConfirmMaterial" tooltip="Save" icon="sap-icon://save"/>
+					<!--<Button type="Emphasized" text="Submit" press="onSaveSTO"/>-->
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
